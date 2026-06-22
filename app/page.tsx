@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="plaque reveal">
       <div className="crest" aria-hidden="true">
-        tt
+        ttm
       </div>
       <p className="eyebrow">Coming soon · Singapore</p>
       <h1 className="wordmark">
