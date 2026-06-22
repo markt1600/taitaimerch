@@ -30,7 +30,11 @@ async function getAccessToken(
   });
 
   if (!res.ok) {
-    throw new Error(`Token request failed: ${res.status}`);
+    // Log Shopify's actual error (e.g. "shop_not_permitted", "invalid_client")
+    // so the cause is visible in the Vercel logs.
+    const detail = await res.text().catch(() => "");
+    console.error("Token request failed:", res.status, detail);
+    throw new Error(`Token request failed: ${res.status} ${detail}`);
   }
 
   const data = await res.json();
