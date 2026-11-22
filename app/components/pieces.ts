@@ -3,8 +3,10 @@
    the signup. These are portfolio pieces, NOT products — anything for sale
    comes from Shopify and appears in the Shop section instead.
 
-   To add or swap a piece: put the photo in /public/art (portrait, roughly
-   3:4) and add an entry here. Titles and notes are suggestions — edit freely.
+   Most pieces are cut out of their original photo (transparent .webp) and
+   float on a brand-coloured tile; `tone` picks that colour. A piece without
+   `tone` is shown as a full-bleed photo instead. Titles and notes are
+   suggestions — edit freely.
 --------------------------------------------------------------------------- */
 
 export type Piece = {
@@ -13,52 +15,53 @@ export type Piece = {
   note: string;
   image: string;
   alt: string;
+  /** Tile colour behind a cut-out piece. Omit for a full-bleed photo. */
+  tone?: "jade" | "deep" | "gold" | "sage" | "cream";
   /** "big" = 2×2 feature tile, "wide" = 2×1 landscape crop. */
   size?: "big" | "wide";
-  /** CSS object-position, for steering the crop. */
-  focus?: string;
 };
 
 export const pieces: Piece[] = [
   {
     no: "01",
     title: "Napa Confetti",
-    note: "Crystals on wine bottle & case",
-    image: "/art/napa-confetti.jpg",
-    alt: "A wine bottle and its wooden case scattered with multicoloured crystals, with a crystal-covered stopper",
+    note: "Crystals on wine bottle",
+    image: "/art/napa-confetti.webp",
+    tone: "cream",
+    alt: "A wine bottle scattered with multicoloured crystals, topped with a crystal-covered stopper",
     size: "big",
   },
   {
     no: "02",
     title: "Prawn Star",
-    note: "Beads on snack packet, framed",
-    image: "/art/prawn-star.jpg",
-    alt: "A framed silver prawn-cracker packet with the prawn picked out in gold beads and crystals",
-    focus: "50% 60%",
+    note: "Beads on snack packet",
+    image: "/art/prawn-star.webp",
+    tone: "jade",
+    alt: "A silver prawn-cracker packet with the prawn picked out in gold beads and crystals",
   },
   {
     no: "03",
     title: "Madame Vert",
     note: "Beaded portrait on glass",
-    image: "/art/madame-vert.jpg",
+    image: "/art/madame-vert.webp",
+    tone: "gold",
     alt: "A green glass bottle with an abstract face worked in gold, silver and yellow beads",
-    focus: "50% 55%",
   },
   {
     no: "04",
     title: "Sticks & Stones",
-    note: "Crystals on snack box, framed",
-    image: "/art/sticks-and-stones.jpg",
-    alt: "A pretzel-stick box completely covered in blue, gold and iridescent crystals, in a mirrored frame",
-    focus: "50% 55%",
+    note: "Crystals on snack box",
+    image: "/art/sticks-and-stones.webp",
+    tone: "deep",
+    alt: "A pretzel-stick box completely covered in blue, gold and iridescent crystals",
   },
   {
     no: "05",
     title: "Twin-Lens Twinkle",
     note: "Crystals on miniature camera",
-    image: "/art/twin-lens-twinkle.jpg",
+    image: "/art/twin-lens-twinkle.webp",
+    tone: "sage",
     alt: "A miniature twin-lens camera studded with iridescent crystals",
-    focus: "50% 40%",
   },
   {
     no: "06",
@@ -67,6 +70,5 @@ export const pieces: Piece[] = [
     image: "/art/big-bag-energy.jpg",
     alt: "A silver crisp packet with the words BIG BAG filled in with gunmetal crystals",
     size: "wide",
-    focus: "50% 47%",
   },
 ];

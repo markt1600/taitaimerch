@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description:
       "Everyday objects, set by hand with crystals and beads. One-of-a-kind creations by Mel.",
     type: "website",
-    images: ["/art/napa-confetti.jpg"],
+    images: ["/og.jpg"],
   },
 };
 

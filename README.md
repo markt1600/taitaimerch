@@ -18,8 +18,9 @@ Stack: Next.js (App Router) · React · Tailwind CSS v4 · TypeScript · deploye
 The gallery and hero photos live in `public/art/`. They are examples of Mel's
 work, shown as a portfolio and labelled as not for sale; anything you actually
 sell comes from Shopify and appears in the Shop section. To add or swap a piece, drop
-in a portrait photo (roughly 3:4) and edit the list in
-`app/components/pieces.ts` — title, note, alt text and crop focus are all there.
+in an image and edit the list in `app/components/pieces.ts` — title, note, alt
+text and tile colour are all there. Pieces with a transparent background
+(`.webp` or `.png`) float on a coloured tile; ordinary photos fill the tile.
 
 ---
 

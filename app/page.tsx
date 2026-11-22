@@ -13,7 +13,7 @@ const ticker = [
   "One of one",
 ];
 
-const hero = [pieces[0], pieces[3], pieces[1]];
+const hero = [pieces[2], pieces[3], pieces[1]];
 
 function Glint() {
   return (
@@ -105,14 +105,13 @@ export default async function Home({
           <Tilt className="stack">
             {hero.map((p, i) => (
               <figure key={p.no} className={`print print-${"abc"[i]}`}>
-                <div className="print-art">
+                <div className={`print-art tone-${p.tone}`}>
                   <Image
                     src={p.image}
                     alt={p.alt}
                     fill
                     priority
                     sizes="(max-width: 56rem) 50vw, 20rem"
-                    style={{ objectPosition: p.focus }}
                   />
                 </div>
                 <figcaption>
@@ -230,7 +229,9 @@ export default async function Home({
                 key={p.no}
                 className={`tile ${p.size ? `tile-${p.size}` : ""} sr`}
               >
-                <Tilt className="tile-card">
+                <Tilt
+                  className={`tile-card ${p.tone ? `is-cutout tone-${p.tone}` : ""}`}
+                >
                   <Image
                     src={p.image}
                     alt={p.alt}
@@ -240,7 +241,6 @@ export default async function Home({
                         ? "(max-width: 52rem) 100vw, 50vw"
                         : "(max-width: 52rem) 50vw, 25vw"
                     }
-                    style={{ objectPosition: p.focus }}
                   />
                   <div className="tile-label">
                     <span className="tile-no">From the archive</span>
@@ -318,7 +318,9 @@ export default async function Home({
             <div className="ticker-track">
               {[0, 1].map((n) => (
                 <ul key={n}>
-                  {pieces.map((p) => (
+                  {pieces
+                    .filter((p) => p.tone)
+                    .map((p) => (
                     <li key={p.no}>
                       <Image src={p.image} alt="" fill sizes="20rem" />
                     </li>
