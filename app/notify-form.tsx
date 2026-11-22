@@ -43,7 +43,7 @@ export default function NotifyForm() {
 
   if (status === "done") {
     return (
-      <p className="notify notify-done">
+      <p className="notify notify-done" role="status">
         <strong>You&rsquo;re on the list.</strong> We&rsquo;ll send a note the
         moment the doors open.
       </p>
@@ -74,17 +74,11 @@ export default function NotifyForm() {
           disabled={status === "loading"}
         >
           {status === "loading" ? "Adding\u2026" : "Notify me"}
+          <span aria-hidden="true">→</span>
         </button>
       </div>
       {status === "error" ? (
-        <p
-          role="alert"
-          style={{
-            marginTop: "0.75rem",
-            fontSize: "0.85rem",
-            color: "#e0a3a3",
-          }}
-        >
+        <p role="alert" className="notify-error">
           {error}
         </p>
       ) : null}

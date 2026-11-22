@@ -1,33 +1,37 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 
 const display = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500"],
   style: ["normal", "italic"],
+  axes: ["SOFT", "WONK", "opsz"],
   variable: "--font-display",
   display: "swap",
 });
 
 const body = Manrope({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   variable: "--font-body",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://taitaimerch.com"),
-  title: "Tai Tai Merch — Coming soon",
+  title: "Tai Tai Merch — Modern, cute art by Mel",
   description:
-    "Tai Tai Merch is on the way. Merch for the ladies who lunch, and the rest of us who'd like to. Join the list for first access.",
+    "Tai Tai Merch is the home of Mel's modern-but-cute art: one-of-a-kind creations for the ladies who lunch, and the rest of us who'd like to. Join the list for first access.",
   openGraph: {
-    title: "Tai Tai Merch — Coming soon",
+    title: "Tai Tai Merch — Modern, cute art by Mel",
     description:
-      "Merch for the ladies who lunch. Join the list for first access.",
+      "One-of-a-kind creations by Mel. Join the list for first access.",
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0e332b",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({

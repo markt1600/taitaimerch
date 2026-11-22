@@ -13,6 +13,16 @@ Stack: Next.js (App Router) · React · Tailwind CSS v4 · TypeScript · deploye
 
 ---
 
+## Adding Mel's artwork
+
+The illustrations on the page are stand-ins drawn in the brand palette. To
+replace one with real art, drop the image into `public/art/` and set `image`
+(plus the real `title` and `note`) on the matching entry in the `pieces` list
+in `app/components/art.tsx`. The gallery then shows the image instead of the
+doodle.
+
+---
+
 ## Run it locally
 
 ```bash
