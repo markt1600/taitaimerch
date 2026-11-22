@@ -13,24 +13,6 @@ const showcase = [
   piece("Sticks & Stones"),
 ];
 
-const principles = [
-  {
-    no: "I",
-    title: "Modern art",
-    text: "Everyday objects, reimagined as contemporary pieces: a snack packet, a wine bottle, a tiny camera.",
-  },
-  {
-    no: "II",
-    title: "Crafted by hand",
-    text: "Every crystal and every bead is set by Mel, one at a time. No machines, no shortcuts.",
-  },
-  {
-    no: "III",
-    title: "One of one",
-    text: "Each piece is made once and never repeated. When it has a home, it is gone.",
-  },
-];
-
 export default async function Home({
   searchParams,
 }: {
@@ -56,7 +38,6 @@ export default async function Home({
         </a>
         <nav className="nav-links" aria-label="Primary">
           {open ? <a href="#shop">Shop</a> : null}
-          <a href="#principles">Principles</a>
           <a href="#work">Archive</a>
           <a href="#mel">Mel</a>
         </nav>
@@ -152,7 +133,7 @@ export default async function Home({
                 Each piece is made once. Checkout is handled securely by
                 Shopify.
               </p>
-              {params.checkout === "unavailable" ? (
+              {params.checkout ? (
                 <p className="shop-alert" role="alert">
                   Sorry &mdash; we couldn&rsquo;t start checkout for that piece.
                   Please try again in a moment.
@@ -201,27 +182,6 @@ export default async function Home({
             </ul>
           </section>
         ) : null}
-
-        {/* --------------------------- Principles --------------------------- */}
-        <section className="principles" id="principles">
-          <div className="section-head section-head-center sr">
-            <p className="eyebrow eyebrow-ink">The principles</p>
-            <h2>
-              Made once. By hand. <em>Never again.</em>
-            </h2>
-          </div>
-          <ol className="creed">
-            {principles.map((p) => (
-              <li key={p.no} className="sr">
-                <span className="creed-no" aria-hidden="true">
-                  {p.no}
-                </span>
-                <h3>{p.title}</h3>
-                <p>{p.text}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
 
         {/* ----------------------------- Archive ---------------------------- */}
         <section className="work" id="work">

@@ -9,8 +9,7 @@
    vitrine. The gold double-framed plaque from the original calling card
    closes the page.
 
-   Three principles shape the copy and the layout: modern art, crafted by
-   hand, one of one.
+   Three principles shape the copy: modern art, crafted by hand, one of one.
 --------------------------------------------------------------------------- */
 
 :root {
@@ -114,8 +113,7 @@ h3,
 .tile-cta p,
 .niche-arch figcaption span,
 .nav-name,
-.foot-mark,
-.creed-no {
+.foot-mark {
   font-family: var(--font-display), serif;
   font-variation-settings: "SOFT" 30, "WONK" 0;
   font-weight: 300;
@@ -724,71 +722,6 @@ em {
 
 .buy {
   width: 100%;
-}
-
-/* ------------------------------- Principles ------------------------------- */
-
-.principles {
-  padding: var(--section) var(--gutter);
-  background: var(--ivory);
-  color: var(--jade-900);
-}
-
-.principles em {
-  background: linear-gradient(100deg, #8a6a1f, #c9a24b 55%, #a17f2e);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-.creed {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  max-width: var(--wide);
-  margin: 0 auto;
-  border-top: 1px solid rgba(14, 51, 43, 0.18);
-}
-
-.creed li {
-  display: grid;
-  align-content: start;
-  gap: 0.9rem;
-  padding: clamp(2rem, 4vw, 3.25rem) clamp(1.25rem, 3vw, 2.75rem) 0;
-}
-
-.creed li + li {
-  border-left: 1px solid rgba(14, 51, 43, 0.18);
-}
-
-.creed li:first-child {
-  padding-left: 0;
-}
-
-.creed-no {
-  font-size: 1rem;
-  font-style: italic;
-  letter-spacing: 0.1em;
-  color: var(--gold-ink);
-}
-
-.creed p {
-  max-width: 30ch;
-  color: #3d5a50;
-}
-
-@media (max-width: 52rem) {
-  .creed {
-    grid-template-columns: 1fr;
-  }
-
-  .creed li,
-  .creed li:first-child {
-    padding: 2rem 0;
-  }
-
-  .creed li + li {
-    border-left: none;
-    border-top: 1px solid rgba(14, 51, 43, 0.18);
-  }
 }
 
 /* --------------------------------- Archive -------------------------------- */

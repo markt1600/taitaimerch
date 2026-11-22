@@ -137,7 +137,13 @@ export async function createCheckout(variantId: string): Promise<string> {
         "No checkout URL returned",
     );
   }
-  return url;
+
+  // Shopify builds this link on the store's primary domain. In a headless
+  // setup that domain often points at this site rather than at Shopify, which
+  // would send shoppers to a dead page — so always use the myshopify domain.
+  const checkout = new URL(url);
+  checkout.host = process.env.SHOPIFY_STORE_DOMAIN!.replace(/^https?:\/\//, "");
+  return checkout.toString();
 }
 
 export function formatPrice({ amount, currencyCode }: Product["price"]) {
