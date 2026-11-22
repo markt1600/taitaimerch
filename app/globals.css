@@ -83,6 +83,7 @@ a {
 
 h1,
 h2,
+h3,
 p,
 ul,
 figure {
@@ -96,6 +97,7 @@ ul {
 
 h1,
 h2,
+h3,
 .tile-cta p,
 .print figcaption span,
 .tile-label strong {
@@ -221,6 +223,38 @@ em {
   color: var(--cream);
 }
 
+.pill-foil {
+  border-color: transparent;
+  background: var(--foil);
+  background-size: 200% 100%;
+  color: var(--jade-900);
+}
+
+.pill-foil:hover {
+  background: var(--foil);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+}
+
+.progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  height: 3px;
+  background: var(--foil);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.sparkles {
+  position: absolute;
+  inset: 0 calc(50% - 50vw);
+  z-index: -1;
+  width: 100vw;
+  height: 100%;
+  pointer-events: none;
+}
+
 /* ----------------------------------- Nav ---------------------------------- */
 
 .nav {
@@ -304,6 +338,7 @@ em {
 
 .hero {
   position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   align-items: center;
@@ -337,8 +372,17 @@ em {
   letter-spacing: -0.035em;
 }
 
+.letters {
+  display: block;
+}
+
+.letters span {
+  display: inline-block;
+}
+
 .wordmark em {
   display: block;
+  background-size: 250% 100%;
   padding-bottom: 0.12em;
   margin-bottom: -0.12em;
 }
@@ -348,6 +392,16 @@ em {
   font-size: clamp(1.05rem, 1.5vw, 1.2rem);
   color: var(--sage);
   text-wrap: pretty;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-actions .pill {
+  padding: 0.95rem 1.5rem;
 }
 
 .fine {
@@ -473,7 +527,7 @@ em {
   position: relative;
   width: 100%;
   max-width: 30rem;
-  aspect-ratio: 1 / 1.08;
+  aspect-ratio: 1 / 1.2;
   justify-self: center;
   perspective: 1200px;
 }
@@ -501,14 +555,29 @@ em {
 }
 
 .print-art {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
   border-radius: 0.7rem;
+  background: var(--sage);
 }
 
-.print-art svg {
-  width: 82%;
+.print-art img {
+  object-fit: cover;
+}
+
+/* A slow glint that sweeps across each print. */
+.print-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 60%
+  );
+  translate: -120% 0;
 }
 
 .print figcaption {
@@ -533,7 +602,7 @@ em {
 .print-a {
   --turn: -8deg;
   --depth: 0.6;
-  top: 4%;
+  top: 0;
   left: 2%;
 }
 
@@ -557,6 +626,11 @@ em {
   position: absolute;
   width: 2rem;
   z-index: 3;
+  color: var(--gold-glow);
+}
+
+.twinkle svg {
+  display: block;
 }
 
 .twinkle-a {
@@ -620,6 +694,141 @@ em {
   color: var(--gold);
 }
 
+/* ---------------------------------- Shop ---------------------------------- */
+
+.shop {
+  padding: clamp(4.5rem, 10vw, 8rem) var(--gutter);
+}
+
+.shop .section-head > p:last-of-type {
+  color: var(--sage);
+}
+
+.shop-alert {
+  padding: 0.8rem 1.1rem;
+  border: 1px solid var(--gold-line);
+  border-radius: 1rem;
+  color: var(--gold-glow);
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: clamp(1rem, 2vw, 1.75rem);
+  max-width: var(--wide);
+  margin: 0 auto;
+}
+
+.product {
+  perspective: 900px;
+}
+
+.product-card {
+  display: grid;
+  gap: 1rem;
+  height: 100%;
+  padding: 0.6rem 0.6rem 1rem;
+  border: 1px solid var(--gold-faint);
+  border-radius: 1.75rem;
+  background: rgba(243, 235, 221, 0.04);
+}
+
+.product-card:hover {
+  border-color: var(--gold-line);
+  box-shadow: 0 30px 50px -30px rgba(0, 0, 0, 0.8);
+}
+
+.product-art {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border-radius: 1.25rem;
+  background: var(--jade-700);
+}
+
+.product-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+  padding: 0.3rem 0.7rem;
+  border-radius: 99px;
+  background: var(--jade-950);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-glow);
+}
+
+.product-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0.6rem;
+}
+
+.product-info h3 {
+  font-size: 1.3rem;
+  line-height: 1.15;
+}
+
+.product-info p {
+  font-weight: 600;
+  color: var(--gold-glow);
+  white-space: nowrap;
+}
+
+.product form {
+  padding: 0 0.4rem;
+}
+
+.buy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 99px;
+  background: var(--foil);
+  background-size: 200% 100%;
+  color: var(--jade-900);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-position 0.6s var(--ease),
+    transform 0.35s var(--spring);
+}
+
+.buy:hover {
+  background-position: 100% 0;
+}
+
+.buy:active {
+  transform: scale(0.97);
+}
+
+.buy:disabled {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--gold-faint);
+  color: var(--sage);
+  cursor: not-allowed;
+}
+
 /* --------------------------------- Gallery -------------------------------- */
 
 .work {
@@ -652,7 +861,7 @@ em {
 .bento {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-rows: clamp(11rem, 21vw, 17.5rem);
+  grid-auto-rows: clamp(14rem, 27vw, 23rem);
   grid-auto-flow: dense;
   gap: clamp(0.75rem, 1.4vw, 1.25rem);
   max-width: var(--wide);
@@ -661,12 +870,7 @@ em {
 
 .tile {
   position: relative;
-  overflow: hidden;
-  border-radius: clamp(1.25rem, 2.4vw, 2rem);
-  isolation: isolate;
-  transition:
-    transform 0.5s var(--ease),
-    box-shadow 0.5s var(--ease);
+  perspective: 900px;
 }
 
 .tile-big {
@@ -678,79 +882,79 @@ em {
   grid-column: span 2;
 }
 
-.tile:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 26px 40px -24px rgba(14, 51, 43, 0.55);
+.tile-card,
+.product-card {
+  --tx: 0;
+  --ty: 0;
+  transform: rotateX(calc(var(--ty) * -6deg)) rotateY(calc(var(--tx) * 6deg));
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
 }
 
-.tone-jade {
-  background: radial-gradient(120% 120% at 30% 15%, var(--jade-600), var(--jade-700) 60%);
-  color: var(--ivory);
-}
-
-.tone-deep {
-  background: radial-gradient(120% 120% at 70% 10%, var(--jade-700), var(--jade-900) 65%);
-  color: var(--ivory);
-}
-
-.tone-gold {
-  background: radial-gradient(120% 120% at 30% 15%, #f0dba6, var(--gold-glow) 60%);
-  color: var(--jade-900);
-}
-
-.tone-sage {
-  background: radial-gradient(120% 120% at 70% 15%, #bfd0c7, var(--sage) 65%);
-  color: var(--jade-900);
-}
-
-.tone-cream {
-  background: var(--cream);
-  color: var(--jade-900);
-  box-shadow: inset 0 0 0 1px rgba(14, 51, 43, 0.1);
-}
-
-.tile-art {
+.tile-card {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 8% 8% 22%;
+  overflow: hidden;
+  border-radius: clamp(1.25rem, 2.4vw, 2rem);
+  background: var(--jade-700);
+  color: var(--ivory);
+  isolation: isolate;
 }
 
-.tile:not(.tile-big, .tile-wide) .tile-art {
-  padding: 7% 7% 36%;
+.tile-card:hover {
+  box-shadow: 0 30px 44px -26px rgba(14, 51, 43, 0.7);
 }
 
-.tile-wide .tile-art {
-  padding: 4% 4% 4% 42%;
-}
-
-.tile-art svg {
-  width: auto;
-  height: 100%;
-  max-width: 100%;
-  transition: transform 0.6s var(--spring);
-}
-
-.tile-art img {
+.tile-card img,
+.product-art img {
   object-fit: cover;
+  transition: scale 0.9s var(--ease);
 }
 
-.tile:hover .tile-art svg {
-  transform: rotate(-5deg) scale(1.07);
+.tile-card:hover img,
+.product-card:hover .product-art img {
+  scale: 1.06;
+}
+
+/* Scrim for the label, plus a glare that follows the pointer. */
+.tile-card::before,
+.tile-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tile-card::before {
+  background: linear-gradient(to top, rgba(10, 38, 31, 0.88), rgba(10, 38, 31, 0) 48%);
+}
+
+.tile-card::after,
+.product-art::after {
+  background: radial-gradient(
+    circle at calc(50% + var(--tx) * 50%) calc(50% + var(--ty) * 50%),
+    rgba(255, 255, 255, 0.32),
+    transparent 45%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.tile-card:hover::after,
+.product-card:hover .product-art::after {
+  opacity: 1;
 }
 
 .tile-label {
   position: absolute;
   inset: auto 0 0 0;
+  z-index: 2;
   display: grid;
   gap: 0.1rem;
   padding: clamp(0.9rem, 1.8vw, 1.5rem);
-}
-
-.tile-wide .tile-label {
-  inset: 0 auto 0 0;
-  align-content: end;
 }
 
 .tile-no,
@@ -759,14 +963,15 @@ em {
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  opacity: 0.72;
+  color: var(--gold-glow);
 }
 
 .tile-note {
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: none;
   font-size: 0.82rem;
   font-weight: 400;
+  color: rgba(243, 235, 221, 0.82);
 }
 
 .tile-label strong {
@@ -786,12 +991,7 @@ em {
   gap: 1rem;
   padding: clamp(1.1rem, 2vw, 1.75rem);
   border: 1.5px dashed rgba(14, 51, 43, 0.3);
-  background: transparent;
-}
-
-.tile-cta:hover {
-  transform: none;
-  box-shadow: none;
+  border-radius: clamp(1.25rem, 2.4vw, 2rem);
 }
 
 .tile-cta p {
@@ -804,7 +1004,7 @@ em {
 @media (max-width: 52rem) {
   .bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: clamp(10rem, 44vw, 17rem);
+    grid-auto-rows: clamp(12rem, 58vw, 22rem);
   }
 }
 
@@ -935,9 +1135,54 @@ em {
   }
 }
 
+/* ------------------------------- Big marquee ------------------------------ */
+
+.shout {
+  overflow: hidden;
+  padding: 2.5rem 0 3.5rem;
+}
+
+.shout .ticker-track {
+  rotate: -2deg;
+}
+
+.shout ul {
+  display: flex;
+  flex: none;
+}
+
+.shout li {
+  display: flex;
+  align-items: center;
+  gap: 4vw;
+  padding-right: 4vw;
+  font-family: var(--font-display), serif;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-size: clamp(4rem, 13vw, 11rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold-line);
+}
+
+.shout li:nth-child(2) {
+  font-style: italic;
+  color: var(--gold);
+  -webkit-text-stroke: 0;
+}
+
+.shout svg {
+  width: 0.4em;
+  flex: none;
+  color: var(--gold-glow);
+}
+
 /* ---------------------------------- Join ---------------------------------- */
 
 .join {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   place-items: center;
@@ -1074,14 +1319,29 @@ em {
     animation-delay: 0.6s;
   }
 
-  .print-art svg {
-    animation: bob 5s ease-in-out infinite;
+  .print-art::after {
+    animation: glint 6s var(--ease) infinite 1.6s;
   }
-  .print-b .print-art svg {
-    animation-delay: -1.6s;
+  .print-b .print-art::after {
+    animation-delay: 3.4s;
   }
-  .print-c .print-art svg {
-    animation-delay: -3.2s;
+  .print-c .print-art::after {
+    animation-delay: 5.2s;
+  }
+
+  .letters span {
+    animation: pop 0.9s var(--spring) both;
+    animation-delay: calc(0.15s + var(--i) * 0.055s);
+  }
+
+  .wordmark em {
+    animation:
+      rise 0.9s var(--ease) 0.5s both,
+      shimmer 7s linear infinite;
+  }
+
+  .shout .ticker-track {
+    animation: slide 26s linear infinite reverse;
   }
 
   .twinkle {
@@ -1092,7 +1352,7 @@ em {
   }
 
   .dot {
-    animation: ping 2.4s ease-out infinite;
+    animation: dot-pulse 2.4s ease-out infinite;
   }
 
   .ticker-track {
@@ -1109,6 +1369,55 @@ em {
       animation: rise linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 45%;
+    }
+
+    .progress {
+      animation: grow linear both;
+      animation-timeline: scroll(root);
+    }
+
+    /* The fan of prints drifts up and away as the hero scrolls out. */
+    .stack {
+      animation: drift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+  }
+
+  @keyframes grow {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes drift {
+    to {
+      translate: 0 -14vh;
+      rotate: 4deg;
+    }
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      translate: 0 0.5em;
+      rotate: 8deg;
+    }
+  }
+
+  @keyframes shimmer {
+    to {
+      background-position: -250% 0;
+    }
+  }
+
+  @keyframes glint {
+    0% {
+      translate: -120% 0;
+    }
+    22%,
+    100% {
+      translate: 120% 0;
     }
   }
 
@@ -1128,13 +1437,6 @@ em {
     }
   }
 
-  @keyframes bob {
-    50% {
-      translate: 0 -5px;
-      rotate: 2deg;
-    }
-  }
-
   @keyframes twinkle {
     50% {
       scale: 0.55;
@@ -1143,7 +1445,7 @@ em {
     }
   }
 
-  @keyframes ping {
+  @keyframes dot-pulse {
     to {
       box-shadow: 0 0 0 0.6rem rgba(228, 201, 136, 0);
     }

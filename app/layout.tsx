@@ -20,12 +20,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://taitaimerch.com"),
   title: "Tai Tai Merch — Modern, cute art by Mel",
   description:
-    "Tai Tai Merch is the home of Mel's modern-but-cute art: one-of-a-kind creations for the ladies who lunch, and the rest of us who'd like to. Join the list for first access.",
+    "Tai Tai Merch is the home of Mel's modern-but-cute art: everyday objects set by hand with crystals and beads. One-of-a-kind creations for the ladies who lunch, and the rest of us who'd like to.",
   openGraph: {
     title: "Tai Tai Merch — Modern, cute art by Mel",
     description:
-      "One-of-a-kind creations by Mel. Join the list for first access.",
+      "Everyday objects, set by hand with crystals and beads. One-of-a-kind creations by Mel.",
     type: "website",
+    images: ["/art/napa-confetti.jpg"],
   },
 };
 
