@@ -15,7 +15,9 @@ Stack: Next.js (App Router) · React · Tailwind CSS v4 · TypeScript · deploye
 
 ## Adding Mel's artwork
 
-The gallery and hero photos live in `public/art/`. To add or swap a piece, drop
+The gallery and hero photos live in `public/art/`. They are examples of Mel's
+work, shown as a portfolio and labelled as not for sale; anything you actually
+sell comes from Shopify and appears in the Shop section. To add or swap a piece, drop
 in a portrait photo (roughly 3:4) and edit the list in
 `app/components/pieces.ts` — title, note, alt text and crop focus are all there.
 

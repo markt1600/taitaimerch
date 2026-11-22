@@ -1,5 +1,7 @@
 /* ---------------------------------------------------------------------------
-   Mel's pieces, as shown in the hero and the gallery.
+   Examples of Mel's work, shown in the hero, the gallery and (dimmed) behind
+   the signup. These are portfolio pieces, NOT products — anything for sale
+   comes from Shopify and appears in the Shop section instead.
 
    To add or swap a piece: put the photo in /public/art (portrait, roughly
    3:4) and add an entry here. Titles and notes are suggestions — edit freely.

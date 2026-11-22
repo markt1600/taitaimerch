@@ -1186,8 +1186,45 @@ em {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   place-items: center;
-  padding: clamp(2rem, 6vw, 5rem) var(--gutter) clamp(5rem, 10vw, 8rem);
+  padding: clamp(4rem, 8vw, 7rem) var(--gutter) clamp(5rem, 10vw, 8rem);
   background: radial-gradient(90% 70% at 50% 60%, var(--jade-700) 0%, transparent 70%);
+}
+
+/* Mel's pieces drifting past, dimmed, behind the plaque. */
+.join-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  opacity: 0.22;
+  filter: saturate(0.8);
+  mask-image: radial-gradient(70% 90% at 50% 50%, #000 30%, transparent 100%);
+}
+
+.join-bg ul {
+  display: flex;
+  flex: none;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.join-bg li {
+  position: relative;
+  flex: none;
+  width: clamp(11rem, 20vw, 17rem);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+.join-bg li:nth-child(odd) {
+  translate: 0 1.5rem;
+}
+
+.join-bg img {
+  object-fit: cover;
 }
 
 .plaque {
@@ -1200,7 +1237,9 @@ em {
   padding: clamp(2.5rem, 6vw, 3.75rem) clamp(1.5rem, 6vw, 3.25rem);
   text-align: center;
   border: 1px solid var(--gold-line);
-  background: rgba(10, 38, 31, 0.35);
+  background: rgba(10, 38, 31, 0.78);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .plaque::before {
@@ -1342,6 +1381,10 @@ em {
 
   .shout .ticker-track {
     animation: slide 26s linear infinite reverse;
+  }
+
+  .join-bg .ticker-track {
+    animation: slide 70s linear infinite;
   }
 
   .twinkle {

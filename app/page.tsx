@@ -117,7 +117,7 @@ export default async function Home({
                 </div>
                 <figcaption>
                   <span>{p.title}</span>
-                  <i>No. {p.no}</i>
+                  <i>Archive</i>
                 </figcaption>
               </figure>
             ))}
@@ -219,7 +219,8 @@ export default async function Home({
             <p>
               Mel takes the everyday &mdash; a wine bottle, a packet of prawn
               crackers, a tiny camera &mdash; and sets it with crystals and
-              beads until it can&rsquo;t help but sparkle.
+              beads until it can&rsquo;t help but sparkle. These are from her
+              own collection: not for sale, just a taste of what she does.
             </p>
           </div>
 
@@ -242,7 +243,7 @@ export default async function Home({
                     style={{ objectPosition: p.focus }}
                   />
                   <div className="tile-label">
-                    <span className="tile-no">No. {p.no}</span>
+                    <span className="tile-no">From the archive</span>
                     <strong>{p.title}</strong>
                     <span className="tile-note">{p.note}</span>
                   </div>
@@ -251,10 +252,12 @@ export default async function Home({
             ))}
             <li className="tile tile-wide tile-cta sr">
               <p>
-                More on the shelf <em>soon.</em>
+                {open ? "Pieces you can " : "Pieces you can own, "}
+                <em>{open ? "take home." : "coming soon."}</em>
               </p>
-              <a className="pill pill-solid" href="#join">
-                Be first to see it <span aria-hidden="true">→</span>
+              <a className="pill pill-solid" href={open ? "#shop" : "#join"}>
+                {open ? "Shop the drop" : "Be first to know"}{" "}
+                <span aria-hidden="true">→</span>
               </a>
             </li>
           </ul>
@@ -311,6 +314,19 @@ export default async function Home({
 
         {/* ------------------------------ Join ------------------------------ */}
         <section className="join" id="join">
+          <div className="join-bg" aria-hidden="true">
+            <div className="ticker-track">
+              {[0, 1].map((n) => (
+                <ul key={n}>
+                  {pieces.map((p) => (
+                    <li key={p.no}>
+                      <Image src={p.image} alt="" fill sizes="20rem" />
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          </div>
           <Sparkles density={0.6} />
           <div className="plaque sr">
             <div className="crest" aria-hidden="true">
