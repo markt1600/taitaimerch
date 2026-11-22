@@ -5,30 +5,31 @@ import { Spotlight, Tilt } from "./components/pointer";
 import { piece, pieces } from "./components/pieces";
 import { formatPrice, getProducts } from "@/lib/shopify";
 
-const ticker = [
-  "Art by Mel",
-  "Modern but cute",
-  "Set by hand, crystal by crystal",
-  "Everyday things, dressed up",
-  "One of one",
-];
+const band = ["Modern art", "Crafted by hand", "One of one", "By Mel", "Singapore"];
 
-const hero = [
+const showcase = [
+  piece("Napa Confetti"),
   piece("Twin-Lens Twinkle"),
   piece("Sticks & Stones"),
-  piece("Prawn Star"),
 ];
 
-function Glint() {
-  return (
-    <svg viewBox="-12 -12 24 24" aria-hidden="true">
-      <path
-        d="M0 -10 C1.5 -3 3 -1.5 10 0 C3 1.5 1.5 3 0 10 C-1.5 3 -3 1.5 -10 0 C-3 -1.5 -1.5 -3 0 -10Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
+const principles = [
+  {
+    no: "I",
+    title: "Modern art",
+    text: "Everyday objects, reimagined as contemporary pieces: a snack packet, a wine bottle, a tiny camera.",
+  },
+  {
+    no: "II",
+    title: "Crafted by hand",
+    text: "Every crystal and every bead is set by Mel, one at a time. No machines, no shortcuts.",
+  },
+  {
+    no: "III",
+    title: "One of one",
+    text: "Each piece is made once and never repeated. When it has a home, it is gone.",
+  },
+];
 
 export default async function Home({
   searchParams,
@@ -55,90 +56,80 @@ export default async function Home({
         </a>
         <nav className="nav-links" aria-label="Primary">
           {open ? <a href="#shop">Shop</a> : null}
-          <a href="#work">The art</a>
-          <a href="#mel">Meet Mel</a>
+          <a href="#principles">Principles</a>
+          <a href="#work">Archive</a>
+          <a href="#mel">Mel</a>
         </nav>
-        <a className="pill" href={open ? "#shop" : "#join"}>
-          {open ? "Shop the drop" : "Join the list"}
+        <a className="btn btn-ghost" href={open ? "#shop" : "#join"}>
+          {open ? "Shop" : "Join the list"}
         </a>
       </header>
 
       <main id="main">
         {/* ------------------------------ Hero ------------------------------ */}
         <section className="hero" id="top">
-          <Sparkles />
+          <Sparkles density={0.45} />
           <div className="hero-copy reveal">
             <p className="eyebrow">
-              <span className="dot" aria-hidden="true" />
-              {open ? "Now open" : "Coming soon"} · Art by Mel · Singapore
+              {open ? "Now open" : "Opening soon"} <span>◆</span> Singapore
             </p>
-            <h1 className="wordmark" aria-label="Tai Tai Merch">
-              <span className="letters" aria-hidden="true">
-                {"Tai Tai".split("").map((c, i) => (
-                  <span key={i} style={{ "--i": i } as React.CSSProperties}>
-                    {c === " " ? " " : c}
-                  </span>
-                ))}
-              </span>
-              <em aria-hidden="true">Merch</em>
+            <h1 className="wordmark">
+              Tai&nbsp;Tai <em>Merch</em>
             </h1>
             <p className="tagline">
-              Everyday things, dressed to the nines. One-of-a-kind crystal and
-              bead creations by Mel, for the ladies who lunch &mdash; and the
-              rest of us who&rsquo;d like to.
+              Modern art, crafted by hand. Mel turns everyday things into
+              one-of-one pieces, set crystal by crystal &mdash; for the ladies
+              who lunch, and the rest of us who&rsquo;d like to.
             </p>
             {open ? (
               <div className="hero-actions">
-                <a className="pill pill-foil" href="#shop">
-                  Shop the drop <span aria-hidden="true">→</span>
+                <a className="btn" href="#shop">
+                  Shop the collection
                 </a>
-                <a className="pill" href="#work">
-                  See the art
+                <a className="btn btn-ghost" href="#work">
+                  View the archive
                 </a>
               </div>
             ) : (
               <>
                 <NotifyForm />
                 <p className="fine">
-                  First access to the first drop. No spam, ever.
+                  First access to the first collection. Nothing else.
                 </p>
               </>
             )}
           </div>
 
-          <Tilt className="stack">
-            {hero.map((p, i) => (
-              <figure key={p.no} className={`print print-${"abc"[i]}`}>
-                <div className={`print-art tone-${p.tone}`}>
+          <div className="showcase">
+            <div className="niche-arch">
+              {showcase.map((p, i) => (
+                <figure
+                  key={p.no}
+                  style={{ "--i": i } as React.CSSProperties}
+                >
                   <Image
                     src={p.image}
                     alt={p.alt}
                     fill
-                    priority
-                    sizes="(max-width: 56rem) 50vw, 20rem"
+                    priority={i === 0}
+                    sizes="(max-width: 56rem) 80vw, 28rem"
                   />
-                </div>
-                <figcaption>
-                  <span>{p.title}</span>
-                  <i>Archive</i>
-                </figcaption>
-              </figure>
-            ))}
-            <span className="twinkle twinkle-a">
-              <Glint />
-            </span>
-            <span className="twinkle twinkle-b">
-              <Glint />
-            </span>
-          </Tilt>
+                  <figcaption>
+                    <span>{p.title}</span>
+                    <i>One of one</i>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
         </section>
 
-        {/* ----------------------------- Ticker ----------------------------- */}
-        <div className="ticker" aria-hidden="true">
-          <div className="ticker-track">
-            {[0, 1].map((n) => (
+        {/* ------------------------------ Band ------------------------------ */}
+        <div className="band" aria-hidden="true">
+          <div className="band-track">
+            {[0, 1, 2].map((n) => (
               <ul key={n}>
-                {ticker.map((t) => (
+                {band.map((t) => (
                   <li key={t}>
                     {t}
                     <span>◆</span>
@@ -153,13 +144,13 @@ export default async function Home({
         {open ? (
           <section className="shop" id="shop">
             <div className="section-head sr">
-              <p className="eyebrow">The shop</p>
+              <p className="eyebrow">The collection</p>
               <h2>
-                Take one <em>home</em>
+                Available <em>now</em>
               </h2>
               <p>
-                Each piece is made by hand, so when it&rsquo;s gone, it&rsquo;s
-                gone. Checkout is handled securely by Shopify.
+                Each piece is made once. Checkout is handled securely by
+                Shopify.
               </p>
               {params.checkout === "unavailable" ? (
                 <p className="shop-alert" role="alert">
@@ -182,9 +173,9 @@ export default async function Home({
                           sizes="(max-width: 40rem) 100vw, (max-width: 64rem) 50vw, 25vw"
                         />
                       ) : null}
-                      {!p.available ? (
-                        <span className="badge">Sold</span>
-                      ) : null}
+                      <span className="badge">
+                        {p.available ? "One of one" : "Sold"}
+                      </span>
                     </div>
                     <div className="product-info">
                       <h3>{p.title}</h3>
@@ -197,12 +188,11 @@ export default async function Home({
                         value={p.variantId ?? ""}
                       />
                       <button
-                        className="buy"
+                        className="btn buy"
                         type="submit"
                         disabled={!p.available || !p.variantId}
                       >
-                        {p.available ? "Buy now" : "Sold out"}
-                        {p.available ? <span aria-hidden="true">→</span> : null}
+                        {p.available ? "Acquire" : "Sold"}
                       </button>
                     </form>
                   </Tilt>
@@ -212,18 +202,37 @@ export default async function Home({
           </section>
         ) : null}
 
-        {/* ----------------------------- Gallery ---------------------------- */}
+        {/* --------------------------- Principles --------------------------- */}
+        <section className="principles" id="principles">
+          <div className="section-head section-head-center sr">
+            <p className="eyebrow eyebrow-ink">The principles</p>
+            <h2>
+              Made once. By hand. <em>Never again.</em>
+            </h2>
+          </div>
+          <ol className="creed">
+            {principles.map((p) => (
+              <li key={p.no} className="sr">
+                <span className="creed-no" aria-hidden="true">
+                  {p.no}
+                </span>
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* ----------------------------- Archive ---------------------------- */}
         <section className="work" id="work">
           <div className="section-head sr">
-            <p className="eyebrow eyebrow-ink">The art</p>
+            <p className="eyebrow">The archive</p>
             <h2>
-              A peek at the <em>studio shelf</em>
+              From the <em>studio shelf</em>
             </h2>
             <p>
-              Mel takes the everyday &mdash; a wine bottle, a packet of prawn
-              crackers, a tiny camera &mdash; and sets it with crystals and
-              beads until it can&rsquo;t help but sparkle. These are from her
-              own collection: not for sale, just a taste of what she does.
+              A selection from Mel&rsquo;s own collection. These pieces are not
+              for sale &mdash; they are here to show what her hands can do.
             </p>
           </div>
 
@@ -233,9 +242,7 @@ export default async function Home({
                 key={p.no}
                 className={`tile ${p.size ? `tile-${p.size}` : ""} sr`}
               >
-                <Tilt
-                  className={`tile-card ${p.tone ? `is-cutout tone-${p.tone}` : ""}`}
-                >
+                <Tilt className={`tile-card ${p.photo ? "is-photo" : ""}`}>
                   <Image
                     src={p.image}
                     alt={p.alt}
@@ -247,7 +254,7 @@ export default async function Home({
                     }
                   />
                   <div className="tile-label">
-                    <span className="tile-no">From the archive</span>
+                    <span className="tile-no">No. {p.no}</span>
                     <strong>{p.title}</strong>
                     <span className="tile-note">{p.note}</span>
                   </div>
@@ -259,9 +266,8 @@ export default async function Home({
                 {open ? "Pieces you can " : "Pieces you can own, "}
                 <em>{open ? "take home." : "coming soon."}</em>
               </p>
-              <a className="pill pill-solid" href={open ? "#shop" : "#join"}>
-                {open ? "Shop the drop" : "Be first to know"}{" "}
-                <span aria-hidden="true">→</span>
+              <a className="btn" href={open ? "#shop" : "#join"}>
+                {open ? "Shop the collection" : "Be first to know"}
               </a>
             </li>
           </ul>
@@ -273,74 +279,47 @@ export default async function Home({
             <span>M</span>
           </div>
           <div className="mel-copy sr">
-            <p className="eyebrow">Meet Mel</p>
+            <p className="eyebrow">The artist</p>
             <h2>
-              Ordinary things, <em>extraordinarily dressed.</em>
+              Meet <em>Mel</em>
             </h2>
             <p>
               Mel is the artist behind Tai Tai Merch. She makes the everyday
               amazing.
             </p>
-            <ul className="traits">
-              <li>
-                <b>One of one</b>
-                No two pieces are ever alike.
-              </li>
-              <li>
-                <b>By hand</b>
-                Every crystal and bead, placed by Mel.
-              </li>
-              <li>
-                <b>Cute</b>
-                Unapologetically so.
-              </li>
-            </ul>
+            <p className="signature" aria-hidden="true">
+              Mel
+            </p>
           </div>
         </section>
-
-        {/* ---------------------------- Big marquee -------------------------- */}
-        <div className="shout" aria-hidden="true">
-          <div className="ticker-track">
-            {[0, 1].map((n) => (
-              <ul key={n}>
-                {["Tai Tai Merch", "Art by Mel", "More is more"].map((t) => (
-                  <li key={t}>
-                    {t}
-                    <Glint />
-                  </li>
-                ))}
-              </ul>
-            ))}
-          </div>
-        </div>
 
         {/* ------------------------------ Join ------------------------------ */}
         <section className="join" id="join">
           <div className="join-bg" aria-hidden="true">
-            <div className="ticker-track">
-              {[0, 1].map((n) => (
+            <div className="band-track">
+              {[0, 1, 2].map((n) => (
                 <ul key={n}>
                   {pieces
-                    .filter((p) => p.tone)
+                    .filter((p) => !p.photo)
                     .map((p) => (
-                    <li key={p.no}>
-                      <Image src={p.image} alt="" fill sizes="20rem" />
-                    </li>
-                  ))}
+                      <li key={p.no}>
+                        <Image src={p.image} alt="" fill sizes="20rem" />
+                      </li>
+                    ))}
                 </ul>
               ))}
             </div>
           </div>
-          <Sparkles density={0.6} />
+          <Sparkles density={0.35} />
           <div className="plaque sr">
             <div className="crest" aria-hidden="true">
               ttm
             </div>
             <p className="eyebrow">
-              {open ? "Stay in the loop" : "The doors open soon"}
+              {open ? "By invitation" : "The doors open soon"}
             </p>
             <h2>
-              Get on <em>the list</em>
+              Join <em>the list</em>
             </h2>
             <div className="rule" aria-hidden="true">
               <span>◆</span>
@@ -348,7 +327,7 @@ export default async function Home({
             <p className="tagline">
               {open
                 ? "A note whenever Mel finishes something new, before anyone else sees it."
-                : "One note when the shop opens, with first pick of Mel’s first drop."}
+                : "One note when the shop opens, with first pick of Mel’s first collection."}
             </p>
             <NotifyForm />
           </div>
@@ -356,9 +335,14 @@ export default async function Home({
       </main>
 
       <footer className="foot">
-        <span>Tai Tai Merch</span>
-        <span>An independent label · Est. 2026</span>
-        <a href="#top">Back to top ↑</a>
+        <p className="foot-mark">
+          Tai Tai <em>Merch</em>
+        </p>
+        <div className="foot-row">
+          <span>Modern art · Crafted by hand · One of one</span>
+          <span>Singapore · Est. 2026</span>
+          <a href="#top">Back to top ↑</a>
+        </div>
       </footer>
     </>
   );

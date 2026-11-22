@@ -4,8 +4,8 @@
    comes from Shopify and appears in the Shop section instead.
 
    Most pieces are cut out of their original photo (transparent .webp) and
-   float on a brand-coloured tile; `tone` picks that colour. A piece without
-   `tone` is shown as a full-bleed photo instead. Titles and notes are
+   float, spotlit, in a dark display niche. Mark an ordinary photo with
+   `photo: true` and it fills the niche instead. Titles and notes are
    suggestions — edit freely.
 --------------------------------------------------------------------------- */
 
@@ -15,8 +15,8 @@ export type Piece = {
   note: string;
   image: string;
   alt: string;
-  /** Tile colour behind a cut-out piece. Omit for a full-bleed photo. */
-  tone?: "jade" | "deep" | "gold" | "sage" | "cream";
+  /** Set for an ordinary photo; it fills its niche instead of floating. */
+  photo?: boolean;
   /** "big" = 2×2 feature tile, "wide" = 2×1 landscape crop. */
   size?: "big" | "wide";
 };
@@ -27,7 +27,6 @@ export const pieces: Piece[] = [
     title: "Napa Confetti",
     note: "Crystals on wine bottle",
     image: "/art/napa-confetti.webp",
-    tone: "cream",
     alt: "A wine bottle scattered with multicoloured crystals, topped with a crystal-covered stopper",
     size: "big",
   },
@@ -36,7 +35,6 @@ export const pieces: Piece[] = [
     title: "Prawn Star",
     note: "Beads on snack packet",
     image: "/art/prawn-star.webp",
-    tone: "jade",
     alt: "A silver prawn-cracker packet with the prawn picked out in gold beads and crystals",
   },
   {
@@ -44,7 +42,6 @@ export const pieces: Piece[] = [
     title: "Madame Vert",
     note: "Beaded portrait on glass",
     image: "/art/madame-vert.webp",
-    tone: "gold",
     alt: "A green glass bottle with an abstract face worked in gold, silver and yellow beads",
   },
   {
@@ -52,7 +49,6 @@ export const pieces: Piece[] = [
     title: "Sticks & Stones",
     note: "Crystals on snack box",
     image: "/art/sticks-and-stones.webp",
-    tone: "deep",
     alt: "A pretzel-stick box completely covered in blue, gold and iridescent crystals",
   },
   {
@@ -60,7 +56,6 @@ export const pieces: Piece[] = [
     title: "Twin-Lens Twinkle",
     note: "Crystals on miniature camera",
     image: "/art/twin-lens-twinkle.webp",
-    tone: "sage",
     alt: "A miniature twin-lens camera studded with iridescent crystals",
   },
   {
@@ -68,7 +63,6 @@ export const pieces: Piece[] = [
     title: "Bunny Business",
     note: "Crystals on a pair of bunnies",
     image: "/art/bunny-business.webp",
-    tone: "deep",
     alt: "Two long-eared bunny figures covered head to toe in iridescent crystals",
     size: "wide",
   },
@@ -77,7 +71,6 @@ export const pieces: Piece[] = [
     title: "Stick Shift",
     note: "Crystals on four snack boxes",
     image: "/art/stick-shift.webp",
-    tone: "cream",
     alt: "Four pretzel-stick boxes side by side, each fully covered in coloured crystals",
     size: "wide",
   },
@@ -86,7 +79,6 @@ export const pieces: Piece[] = [
     title: "Orange Crush",
     note: "Crystals on mint box",
     image: "/art/orange-crush.webp",
-    tone: "jade",
     alt: "A small mint box covered in orange crystals",
   },
   {
@@ -94,6 +86,7 @@ export const pieces: Piece[] = [
     title: "Big Bag Energy",
     note: "Crystals on crisp packet",
     image: "/art/big-bag-energy.jpg",
+    photo: true,
     alt: "A silver crisp packet with the words BIG BAG filled in with gunmetal crystals",
   },
 ];

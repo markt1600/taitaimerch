@@ -74,7 +74,6 @@ export default function NotifyForm() {
           disabled={status === "loading"}
         >
           {status === "loading" ? "Adding\u2026" : "Notify me"}
-          <span aria-hidden="true">→</span>
         </button>
       </div>
       {status === "error" ? (
