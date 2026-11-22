@@ -1062,6 +1062,19 @@ em {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: clamp(12rem, 58vw, 22rem);
   }
+
+  /* Small tiles get tight on phones: drop the note, lift the art. */
+  .tile:not(.tile-big, .tile-wide) .tile-note {
+    display: none;
+  }
+
+  .tile:not(.tile-big) .tile-card.is-cutout img {
+    padding: 8% 10% 44%;
+  }
+
+  .tile-big .tile-card.is-cutout img {
+    padding: 5% 4% 5% 50%;
+  }
 }
 
 /* ----------------------------------- Mel ---------------------------------- */
