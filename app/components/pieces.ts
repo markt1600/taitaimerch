@@ -65,10 +65,37 @@ export const pieces: Piece[] = [
   },
   {
     no: "06",
+    title: "Bunny Business",
+    note: "Crystals on a pair of bunnies",
+    image: "/art/bunny-business.webp",
+    tone: "deep",
+    alt: "Two long-eared bunny figures covered head to toe in iridescent crystals",
+    size: "wide",
+  },
+  {
+    no: "07",
+    title: "Stick Shift",
+    note: "Crystals on four snack boxes",
+    image: "/art/stick-shift.webp",
+    tone: "cream",
+    alt: "Four pretzel-stick boxes side by side, each fully covered in coloured crystals",
+    size: "wide",
+  },
+  {
+    no: "08",
+    title: "Orange Crush",
+    note: "Crystals on mint box",
+    image: "/art/orange-crush.webp",
+    tone: "jade",
+    alt: "A small mint box covered in orange crystals",
+  },
+  {
+    no: "09",
     title: "Big Bag Energy",
     note: "Crystals on crisp packet",
     image: "/art/big-bag-energy.jpg",
     alt: "A silver crisp packet with the words BIG BAG filled in with gunmetal crystals",
-    size: "wide",
   },
 ];
+
+export const piece = (title: string) => pieces.find((p) => p.title === title)!;

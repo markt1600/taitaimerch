@@ -2,7 +2,7 @@ import Image from "next/image";
 import NotifyForm from "./notify-form";
 import Sparkles from "./components/sparkles";
 import { Spotlight, Tilt } from "./components/pointer";
-import { pieces } from "./components/pieces";
+import { piece, pieces } from "./components/pieces";
 import { formatPrice, getProducts } from "@/lib/shopify";
 
 const ticker = [
@@ -13,7 +13,11 @@ const ticker = [
   "One of one",
 ];
 
-const hero = [pieces[2], pieces[3], pieces[1]];
+const hero = [
+  piece("Twin-Lens Twinkle"),
+  piece("Sticks & Stones"),
+  piece("Prawn Star"),
+];
 
 function Glint() {
   return (

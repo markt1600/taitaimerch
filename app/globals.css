@@ -944,6 +944,16 @@ em {
   padding: 6% 8% 6% 42%;
 }
 
+.tile-wide .tile-card.is-cutout img {
+  padding: 5% 5% 5% 36%;
+}
+
+.tile-wide .is-cutout .tile-label {
+  inset: 0 auto 0 0;
+  width: 36%;
+  align-content: end;
+}
+
 .tile-card.is-cutout::before {
   content: none;
 }
@@ -1068,8 +1078,17 @@ em {
     display: none;
   }
 
-  .tile:not(.tile-big) .tile-card.is-cutout img {
+  .tile:not(.tile-big, .tile-wide) .tile-card.is-cutout img {
     padding: 8% 10% 44%;
+  }
+
+  .tile-wide .tile-card.is-cutout img {
+    padding: 5% 5% 30%;
+  }
+
+  .tile-wide .is-cutout .tile-label {
+    inset: auto 0 0 0;
+    width: auto;
   }
 
   .tile-big .tile-card.is-cutout img {
