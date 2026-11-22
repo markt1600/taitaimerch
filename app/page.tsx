@@ -274,10 +274,8 @@ export default async function Home({
               Ordinary things, <em>extraordinarily dressed.</em>
             </h2>
             <p>
-              Mel is the artist behind Tai Tai Merch. She doesn&rsquo;t draw
-              &mdash; she embellishes. A snack packet becomes a jewel box, an
-              empty bottle becomes a portrait, and the things you&rsquo;d
-              normally throw away end up framed on the wall.
+              Mel is the artist behind Tai Tai Merch. She makes the everyday
+              amazing.
             </p>
             <ul className="traits">
               <li>
